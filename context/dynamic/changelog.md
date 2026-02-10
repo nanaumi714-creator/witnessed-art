@@ -13,3 +13,8 @@
 - Reason: Address review feedback for stronger deterministic AI operations during implementation phase.
 - Impact: Added SKILL metadata contract, validation scripts, structured open-question lifecycle, and edge-case decision rules.
 - Related PR/Commit: docs: harden skills metadata and dynamic decision workflow.
+
+## 2026-02-10 (execution sequencing update)
+- Reason: Provide an ordered resolve-all execution plan so all known blockers are cleared before implementation starts.
+- Impact: Replaced sprint placeholders with a deterministic delivery sequence and expanded pending tasks with priority, owner, requirement links, and done criteria.
+- Related PR/Commit: to be filled by current branch commit.
