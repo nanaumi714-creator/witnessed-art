@@ -110,6 +110,7 @@ This file is the highest-priority rule set for all AI agents in this repository.
 ### Uncertainty handling
 - Unknowns, ambiguities, and blockers MUST be recorded in `context/dynamic/open_questions.md`.
 - Agents must stop and escalate when ambiguity can affect safety, policy, or product philosophy.
+- Coordinator MUST review all entries in `context/dynamic/open_questions.md` at least once per day and assign owner/status updates.
 
 ### Post-execution updates
 - After completing work, agents MUST append a concise update to `context/dynamic/changelog.md`.

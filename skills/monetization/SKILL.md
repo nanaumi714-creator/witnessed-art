@@ -1,3 +1,23 @@
+---
+name: monetization
+description: Monetization policy and implementation guardrail skill
+version: 1.1.0
+owners:
+  - monetization_agent
+inputs:
+  - context/rules/monetization_rules.md
+  - context/rules/functional_requirements.md
+  - context/rules/security_constraints.md
+  - context/rules/operations/release_checklist.md
+outputs:
+  - monetization flow change plan
+  - compliance validation notes
+safety_constraints:
+  - no_paywall_for_basic_progress
+  - store_policy_compliance
+  - transparent_pricing_and_value
+---
+
 # Monetization Skill
 
 ## Purpose

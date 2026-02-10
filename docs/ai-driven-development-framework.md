@@ -109,6 +109,18 @@
 - Constraints: 古い仕様の放置禁止。
 - Acceptance: docs/context間の矛盾ゼロ。
 
+### 2.11 SKILL Metadata Contract（YAML Front Matter）
+- すべての `skills/*/SKILL.md` は先頭にYAMLフロントマターを持つ。
+- 必須キー: `name`, `description`, `version`, `owners`, `inputs`, `outputs`, `safety_constraints`
+- 目的: 自動発見精度を高め、Sub-Agentが機械的に適切スキルを選択できるようにする。
+- 検証: `skills/scripts/validate_skill_frontmatter.py` で必須キーをチェックする。
+
+### 2.12 SKILL Validation Scripts
+- `skills/scripts/validate_skill_frontmatter.py`: SKILLメタデータの必須項目検証
+- `skills/scripts/validate_context_paths.py`: SKILLに記載されたcontext参照パスの存在検証
+- `skills/scripts/check_dynamic_updates.py`: dynamic運用ファイルの存在・非空チェック
+- CI統合方針: docs/context変更PRでこれら3スクリプトを必須実行
+
 ---
 
 ## STEP 3: Sub-Agent Design（日本語）
@@ -233,6 +245,12 @@ P3: 将来拡張
 3. 影響領域の再テスト計画生成
 4. QA再実行
 5. Release判定の再実施
+
+### 4.7 Open Questions Closure SLA
+- `context/dynamic/open_questions.md` は日次でCoordinatorがレビューする。
+- 各質問は owner と target_resolution_date を必須とする。
+- ステータス遷移は `open -> in_review -> closed` に限定する。
+- close時は `context/dynamic/decisions_log.md` に解決内容を記録し、`context/dynamic/changelog.md` に要約する。
 
 ---
 

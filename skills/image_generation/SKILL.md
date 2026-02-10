@@ -1,3 +1,23 @@
+---
+name: image_generation
+description: Deterministic SDXL progression execution skill
+version: 1.1.0
+owners:
+  - ai_pipeline_agent
+inputs:
+  - context/rules/ai_generation_pipeline.md
+  - context/rules/image_progression_rules.md
+  - context/rules/cost_budget.md
+  - context/rules/security_constraints.md
+outputs:
+  - worker implementation plan
+  - safety and reproducibility report
+safety_constraints:
+  - no_auto_progression
+  - mandatory_nsfw_filter
+  - preserve_product_philosophy
+---
+
 # Image Generation Skill
 
 ## Purpose

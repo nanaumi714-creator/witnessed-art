@@ -1,3 +1,23 @@
+---
+name: flutter_ui
+description: Flutter UX implementation skill for slow progression experience
+version: 1.1.0
+owners:
+  - flutter_agent
+inputs:
+  - context/rules/ui_behavior.md
+  - context/rules/functional_requirements.md
+  - context/rules/monetization_rules.md
+  - context/static/product_philosophy.md
+outputs:
+  - ui implementation plan
+  - state transition checklist
+safety_constraints:
+  - no_hidden_ad_patterns
+  - no_completion_declaration
+  - irreversible_flow_confirmation
+---
+
 # Flutter UI Skill
 
 ## Purpose

@@ -1,3 +1,24 @@
+---
+name: backend_api
+description: Backend API and persistence enforcement skill
+version: 1.1.0
+owners:
+  - backend_agent
+inputs:
+  - context/rules/functional_requirements.md
+  - context/rules/data_contracts.md
+  - context/rules/security_constraints.md
+  - context/rules/image_progression_rules.md
+  - context/rules/contracts/api_contracts.md
+outputs:
+  - api change plan
+  - contract and test evidence
+safety_constraints:
+  - signed_request_validation
+  - rate_limit_enforcement
+  - deterministic_progression_checks
+---
+
 # Backend API Skill
 
 ## Purpose

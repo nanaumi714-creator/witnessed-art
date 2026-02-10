@@ -20,3 +20,5 @@
 - `skills/`: タスク実行方法（HOW、英語）
 - `context/static|rules|dynamic`: 事実・仕様・運用状態（英語）
 - `.agent/`: サブエージェント責務カード（英語）
+
+- `skills/scripts/`: SKILLメタデータ/参照整合/運用状態の検証スクリプト
