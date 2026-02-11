@@ -1,3 +1,4 @@
+from typing import Optional
 from sqlalchemy import Column, String, Integer, BigInteger, DateTime, Boolean, ForeignKey
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
@@ -20,6 +21,13 @@ class User(Base):
     updated_at = Column(DateTime(timezone=True), onupdate=func.now())
 
     saved_images = relationship("SavedImage", back_populates="owner", cascade="all, delete-orphan")
+
+    @property
+    def current_image_url(self) -> Optional[str]:
+        if not self.current_image_path:
+            return None
+        from app.services.s3_service import s3_service
+        return s3_service.generate_presigned_url(self.current_image_path)
 
 class SavedImage(Base):
     __tablename__ = "saved_images"

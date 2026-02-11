@@ -17,5 +17,8 @@ class UserState(UserBase):
     class Config:
         from_attributes = True
 
+class UserInit(BaseModel):
+    timezone: str = "UTC"
+
 class ProgressRequest(BaseModel):
     timestamp: int

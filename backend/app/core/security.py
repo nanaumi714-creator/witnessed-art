@@ -4,7 +4,7 @@ import firebase_admin
 from firebase_admin import auth, credentials
 from app.core.config import settings
 
-security = HTTPBearer()
+security = HTTPBearer(auto_error=False)
 
 # Initialize Firebase Admin
 import json
@@ -33,6 +33,13 @@ async def get_current_user(token: HTTPAuthorizationCredentials = Depends(securit
     if settings.DEBUG_SKIP_AUTH:
         return {"uid": "local-test-user", "email": "test@example.com"}
         
+    if not token:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Not authenticated",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+
     try:
         decoded_token = auth.verify_id_token(token.credentials)
         return decoded_token
