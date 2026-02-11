@@ -44,6 +44,17 @@
 - **Performance**: Populated `non_functional_requirements.md` with explicit SLOs (200ms API, 30s Gen).
 - **Scope**: Re-confirmed MVP focus on Light Mode (Emerald Wash) only.
 
+## [2026-02-11]
+### Added / Changed
+- Completed Implementation Sprint 1: Technical Core.
+- Established FastAPI project structure with virtual environment.
+- Implemented Firebase Auth & X-Idempotency-Key Middleware.
+- Finalized SQLAlchemy models and DB session management.
+- Built AI Generation Service with SDXL phase-based parameters and NSFW retry loop.
+- Developed S3 Storage Service with secure presigned URL support.
+- Implemented core endpoints: `/user/init` and `/progress` (Step 0 - Final).
+
+
 
 
 

@@ -1,28 +1,29 @@
-# Current Sprint: Implementation Sprint 1
+# Current Sprint: Implementation Sprint 2
 
 ## Sprint Goal
-Build the technical core (Backend API and AI Worker) based on the finalized specs, enabling a functional end-to-end "Step 0" generation and daily progression loop.
+Build the client-side experience (Flutter UI) and integrate monetization/ad services based on the "Emerald Wash" design and finalized backend.
 
 ## In-scope Items
-1. **Backend Base**: Set up FastAPI, Firebase Auth integration, and PostgreSQL schema.
-2. **AI Worker**: Implement SDXL img2img pipeline with 5-phase parameters.
-3. **Core APIs**: Implement `/user/init` and `/progress` (Step 0 and Step 1 logic).
-4. **Safety**: Integrate Falconsai/nsfw_image_detection with seed-retry logic.
+1. **Flutter Base**: Initialize Flutter project with "Emerald Wash" theme (colors, fonts).
+2. **Main Screen**: Implement the Before/After daily progression view with crossfade.
+3. **Navigation**: Implement Save Slots view and Settings (notifications).
+4. **Monetization**: Integrate Google Mobile Ads (AdMob) for reward tickets.
+5. **Purchases**: Integrate RevenueCat for Patron/Creator pack SKUs.
 
 ## Out-of-scope Items
-- Flutter UI implementation (Sprint 2 focus).
-- Monetization/Ad payment flows (Sprint 2 focus).
-- Production deployment (Sprint 3 focus).
+- Complex social features or historical gallery beyond save slots.
+- Advanced AI parameter tuning (parameters locked from Sprint 1).
 
 ## Ordered Delivery Sequence
-1. **Infra/Auth Setup**
-   - Initialize repository with backend structure and Auth middleware.
-2. **Data Schema Implementation**
-   - Apply `users` and `saved_images` tables via Alembic.
-3. **AI Pipeline Integration**
-   - Connect to Replicate/GPU and implement phase selection logic.
-4. **Endpoint Implementation**
-   - `/user/init` -> `/progress` (Step 0 TXT2IMG).
-5. **Initial Testing**
-   - Run TEST-FR-001 and TEST-PR-003 from `test_strategy.md`.
+1. **App Architecture Setup**
+   - Flutter initialization + BLoC/Provider for state management.
+2. **"Emerald Wash" UI Implementation**
+   - Background watercolor shader, 1.4s/1.1s animations, and Typography.
+3. **API Integration**
+   - Connect to backend `/user/init` and `/progress` with Firebase Auth.
+4. **Ad/Purchase Logic**
+   - AdMob reward callback and RevenueCat entitlement mapping.
+5. **Phase 2 Validation**
+   - Run TEST-FR-003 and TEST-FR-006.
+
 
