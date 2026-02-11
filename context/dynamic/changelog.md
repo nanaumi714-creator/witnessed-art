@@ -54,6 +54,29 @@
 - Developed S3 Storage Service with secure presigned URL support.
 - Implemented core endpoints: `/user/init` and `/progress` (Step 0 - Final).
 
+## [2026-02-11]
+### Added / Changed
+- Completed Implementation Sprint 2 (Part A): Core UI & Experience.
+- Built Flutter project with "Emerald Wash" theme and custom `WatercolorBackground`.
+- Implemented `DevelopmentCanvas` with precise 1.4s/1.1s crossfade animation.
+- Developed `HomeBloc` and `GalleryBloc` with BLoC pattern.
+- Implemented **Save Slots** functionality:
+  - Backend: `POST /saved-images/save` and `GET /saved-images/` list.
+  - Frontend: Save button with SnackBar feedback and real-data Gallery grid.
+- Implemented **Run Reset**:
+  - Backend: `POST /user/reset` to wipe progress and re-seed.
+  - Frontend: Long-press gesture on art canvas with confirmation dialog.
+- Added **Local Testing Mode**:
+  - Backend: `DEBUG_SKIP_AUTH` setting to bypass Firebase token verification in dev environments.
+- Implemented **Push Notification Infrastructure**:
+  - `NotificationService`: Integrated `flutter_local_notifications` and `timezone` for scheduling 24h reminders.
+  - Automatic scheduling: `HomeBloc` now schedules a reminder whenever a new development step is triggered.
+- Implemented **Settings & Preferences**:
+  - `SettingsPage`: "Inner Silence" screen for managing notification toggles and app info.
+  - `SettingsBloc`: Manages persistence using `shared_preferences`.
+
+
+
 
 
 
