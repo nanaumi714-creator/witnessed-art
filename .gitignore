@@ -1,10 +1,11 @@
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
+# Python / Backend
+**/__pycache__/
+**/*.py[cod]
+**/*$py.class
+**/*.so
 .Python
-env/
+backend/venv/
+backend/env/
 build/
 develop-eggs/
 dist/
@@ -18,12 +19,11 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
-venv/
-ENV/
 
-# FastAPI / Backend
-.env
-.pytest_cache/
+# FastAPI / Backend Specific
+backend/.env
+backend/.env.*
+backend/.pytest_cache/
 htmlcov/
 .coverage
 .coverage.*
@@ -34,24 +34,31 @@ coverage.xml
 .hypothesis/
 
 # Alembic
-alembic/versions/*.pyc
+backend/alembic/versions/*.pyc
 
-# Flutter / Dart
-.dart_tool/
-.packages
-.pub-cache/
-.pub/
-build/
-ios/.generated/
-ios/Flutter/Ephemeral/
-ios/Flutter/Generated.xcconfig
-ios/Flutter/flutter_export_environment.sh
-ios/ServiceDefinitions.json
-android/key.properties
-android/app/src/main/res/raw/google_services.json
-ios/Runner/GoogleService-Info.plist
-lib/generated_plugin_registrant.dart
-pubspec.lock
+# Flutter / Frontend
+frontend/.dart_tool/
+frontend/.flutter-plugins
+frontend/.flutter-plugins-dependencies
+frontend/.packages
+frontend/.pub-cache/
+frontend/.pub/
+frontend/build/
+frontend/ios/.generated/
+frontend/ios/Flutter/Ephemeral/
+frontend/ios/Flutter/Generated.xcconfig
+frontend/ios/Flutter/flutter_export_environment.sh
+frontend/ios/ServiceDefinitions.json
+frontend/android/key.properties
+frontend/android/app/src/main/res/raw/google_services.json
+frontend/ios/Runner/GoogleService-Info.plist
+frontend/lib/generated_plugin_registrant.dart
+# pubspec.lock often should be committed for apps, but kept here if intended to be ignored
+# frontend/pubspec.lock 
+
+# Environment variables (Global)
+.env
+.env.*
 
 # IDEs
 .vscode/
