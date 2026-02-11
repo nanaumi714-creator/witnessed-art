@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:witnessed_art/theme/emerald_wash_theme.dart';
 import 'package:witnessed_art/features/home/presentation/pages/home_page.dart';
 import 'package:witnessed_art/features/home/bloc/home_bloc.dart';
@@ -10,10 +11,11 @@ import 'package:witnessed_art/features/settings/bloc/settings_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  
+  await dotenv.load(fileName: ".env");
+
   final notificationService = NotificationService();
   await notificationService.init();
-  
+
   final repository = HomeRepository();
   runApp(WitnessedArtApp(
     repository: repository,
@@ -41,7 +43,9 @@ class WitnessedArtApp extends StatelessWidget {
       child: MultiBlocProvider(
         providers: [
           BlocProvider(
-            create: (context) => SettingsBloc(notificationService: notificationService)..add(LoadSettings()),
+            create: (context) =>
+                SettingsBloc(notificationService: notificationService)
+                  ..add(LoadSettings()),
           ),
           BlocProvider(
             create: (context) => HomeBloc(

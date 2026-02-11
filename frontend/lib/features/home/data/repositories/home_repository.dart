@@ -1,10 +1,12 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:witnessed_art/features/home/data/models/user_state_model.dart';
 
 class HomeRepository {
-  final String baseUrl = "https://api.witnessed-art.com/api/v1";
-  
+  final String baseUrl =
+      dotenv.env['API_URL'] ?? "http://localhost:8000/api/v1";
+
   // In a real app, this would be injected or fetched from a secure storage
   String? _authToken;
 
@@ -38,7 +40,8 @@ class HomeRepository {
         if (_authToken != null) 'Authorization': 'Bearer $_authToken',
         'X-Idempotency-Key': 'prog-${DateTime.now().millisecondsSinceEpoch}',
       },
-      body: jsonEncode({'timestamp': DateTime.now().millisecondsSinceEpoch ~/ 1000}),
+      body: jsonEncode(
+          {'timestamp': DateTime.now().millisecondsSinceEpoch ~/ 1000}),
     );
 
     if (response.statusCode == 200) {
@@ -93,4 +96,3 @@ class HomeRepository {
     }
   }
 }
-

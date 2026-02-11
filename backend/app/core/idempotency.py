@@ -1,4 +1,5 @@
 from fastapi import Request, Response, HTTPException
+from fastapi.responses import JSONResponse
 from starlette.middleware.base import BaseHTTPMiddleware
 import time
 
@@ -9,13 +10,17 @@ class IdempotencyMiddleware(BaseHTTPMiddleware):
         self.cache = {}
 
     async def dispatch(self, request: Request, call_next):
-        if request.method != "POST":
+        # Always allow OPTIONS (preflight) and non-POST requests to pass through
+        if request.method == "OPTIONS" or request.method != "POST":
             return await call_next(request)
 
         idempotency_key = request.headers.get("X-Idempotency-Key")
         if not idempotency_key:
             # We decided it's mandatory in api_contracts.md
-            raise HTTPException(status_code=400, detail="X-Idempotency-Key header is missing")
+            return JSONResponse(
+                status_code=400,
+                content={"detail": "X-Idempotency-Key header is missing"}
+            )
 
         # Basic Cache Check
         cache_key = f"{request.url.path}:{idempotency_key}"

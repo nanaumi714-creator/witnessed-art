@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/timezone.dart' as tz;
 import 'package:timezone/data/latest_all.dart' as tz;
@@ -7,14 +8,17 @@ class NotificationService {
   factory NotificationService() => _instance;
   NotificationService._internal();
 
-  final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+  final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+      FlutterLocalNotificationsPlugin();
 
   Future<void> init() async {
+    if (kIsWeb) return;
+
     tz.initializeTimeZones();
-    
+
     const AndroidInitializationSettings initializationSettingsAndroid =
         AndroidInitializationSettings('@mipmap/ic_launcher');
-    
+
     const DarwinInitializationSettings initializationSettingsDarwin =
         DarwinInitializationSettings(
       requestAlertPermission: true,
@@ -22,7 +26,8 @@ class NotificationService {
       requestSoundPermission: true,
     );
 
-    const InitializationSettings initializationSettings = InitializationSettings(
+    const InitializationSettings initializationSettings =
+        InitializationSettings(
       android: initializationSettingsAndroid,
       iOS: initializationSettingsDarwin,
     );
@@ -31,6 +36,8 @@ class NotificationService {
   }
 
   Future<void> scheduleDailyReminder({required DateTime scheduledTime}) async {
+    if (kIsWeb) return;
+
     // Cancel existing to avoid duplicates
     await flutterLocalNotificationsPlugin.cancel(1001);
 
@@ -43,7 +50,8 @@ class NotificationService {
         android: AndroidNotificationDetails(
           'witnessed_art_reminders',
           'Daily Reminders',
-          channelDescription: 'Notification when the next art step is available',
+          channelDescription:
+              'Notification when the next art step is available',
           importance: Importance.max,
           priority: Priority.high,
         ),
@@ -56,6 +64,7 @@ class NotificationService {
   }
 
   Future<void> cancelAll() async {
+    if (kIsWeb) return;
     await flutterLocalNotificationsPlugin.cancelAll();
   }
 }

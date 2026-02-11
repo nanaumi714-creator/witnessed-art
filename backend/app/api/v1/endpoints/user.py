@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from app.db.session import get_db
 from app.core.security import get_current_user
 from app.models.user import User
-from app.schemas.user import UserState
+from app.schemas.user import UserState, UserInit
 import random
 import uuid
 import hashlib
@@ -13,11 +13,12 @@ router_saved = APIRouter()
 
 @router.post("/init", response_model=UserState)
 def init_user(
-    timezone: str = "UTC", 
+    user_init: UserInit, 
     db: Session = Depends(get_db), 
     current_user: dict = Depends(get_current_user)
 ):
     user_id = current_user.get("uid")
+    timezone = user_init.timezone
     db_user = db.query(User).filter(User.user_id == user_id).first()
     
     if not db_user:

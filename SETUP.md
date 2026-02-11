@@ -8,7 +8,8 @@
 
 - **Frontend**: Flutter SDK (>=3.2.0)
 - **Backend**: Python (>=3.10)
-- **Database**: PostgreSQL (推奨) または SQLite (ローカル開発用)
+- **Database**: Supabase (PostgreSQL)
+- **Container**: Docker Desktop (Supabaseの実行に必要)
 
 ---
 
@@ -38,18 +39,33 @@
 4.  **環境変数の設定**
     `.env` ファイルを作成し（`.env.example` があればそれをコピー）、必要な情報を設定します。
     ```bash
-    DATABASE_URL="sqlite:///./sql_app.db" # または postgresql://user:pass@localhost/dbname
+    # Supabase (Local)
+    SQLALCHEMY_DATABASE_URI="postgresql://postgres:postgres@localhost:54332/postgres"
+    POSTGRES_USER="postgres"
+    POSTGRES_PASSWORD="postgres"
+    POSTGRES_SERVER="localhost:54332"
+    POSTGRES_DB="postgres"
+
     REPLICATE_API_TOKEN="your_token"
     AWS_ACCESS_KEY_ID="your_key"
     AWS_SECRET_ACCESS_KEY="your_secret"
+    AWS_S3_BUCKET="witnessed-art-dev"
     ```
 
-5.  **データベースマイグレーション**
+5.  **Supabase の起動**
     ```bash
+    # プロジェクトルートで実行
+    supabase start
+    ```
+
+6.  **データベースマイグレーション**
+    ```bash
+    # backend ディレクトリで実行
+    alembic revision --autogenerate -m "Initial migration" # 初回のみ
     alembic upgrade head
     ```
 
-6.  **サーバーの起動**
+7.  **サーバーの起動**
     ```bash
     uvicorn app.main:app --reload
     ```
