@@ -9,7 +9,8 @@ class IdempotencyMiddleware(BaseHTTPMiddleware):
         self.cache = {}
 
     async def dispatch(self, request: Request, call_next):
-        if request.method != "POST":
+        # Always allow OPTIONS (preflight) and non-POST requests to pass through
+        if request.method == "OPTIONS" or request.method != "POST":
             return await call_next(request)
 
         idempotency_key = request.headers.get("X-Idempotency-Key")

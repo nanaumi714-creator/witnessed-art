@@ -7,10 +7,24 @@ from app.core.config import settings
 security = HTTPBearer()
 
 # Initialize Firebase Admin
+import json
 if not firebase_admin._apps:
     if settings.FIREBASE_SERVICE_ACCOUNT_JSON:
-        cred = credentials.Certificate(settings.FIREBASE_SERVICE_ACCOUNT_JSON)
-        firebase_admin.initialize_app(cred)
+        try:
+            # JSON文字列かファイルパスかを判定
+            if settings.FIREBASE_SERVICE_ACCOUNT_JSON.strip().startswith('{'):
+                service_account_info = json.loads(settings.FIREBASE_SERVICE_ACCOUNT_JSON)
+                cred = credentials.Certificate(service_account_info)
+            else:
+                cred = credentials.Certificate(settings.FIREBASE_SERVICE_ACCOUNT_JSON)
+            firebase_admin.initialize_app(cred)
+        except Exception as e:
+            # ローカル開発かつデバッグモードなら警告のみで初期化
+            if settings.DEBUG_SKIP_AUTH:
+                print(f"Warning: Firebase initialization failed: {e}. Authentication will be skipped.")
+                firebase_admin.initialize_app()
+            else:
+                raise e
     else:
         # Fallback for local dev if not provided (might fail in production)
         firebase_admin.initialize_app()

@@ -1,4 +1,4 @@
-from typing import List, Union
+from typing import List, Union, Optional
 from pydantic import AnyHttpUrl, validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
@@ -20,7 +20,7 @@ class Settings(BaseSettings):
         return f"postgresql://{values.get('POSTGRES_USER')}:{values.get('POSTGRES_PASSWORD')}@{values.get('POSTGRES_SERVER')}/{values.get('POSTGRES_DB')}"
 
     # CORS
-    BACKEND_CORS_ORIGINS: List[AnyHttpUrl] = []
+    BACKEND_CORS_ORIGINS: Union[List[AnyHttpUrl], str] = []
 
     @validator("BACKEND_CORS_ORIGINS", pre=True)
     def assemble_cors_origins(cls, v: Union[str, List[str]]) -> Union[List[str], str]:
