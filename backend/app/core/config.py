@@ -41,7 +41,8 @@ class Settings(BaseSettings):
     AWS_REGION: str = "us-east-1"
 
     # REPLICATE
-    REPLICATE_API_TOKEN: Union[str, None] = None
+    REPLICATE_API_TOKEN: Optional[str] = None
+    DEBUG_SKIP_AUTH: bool = False
 
     model_config = SettingsConfigDict(case_sensitive=True, env_file=".env")
 

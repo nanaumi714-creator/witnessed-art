@@ -3,6 +3,13 @@
 ## Sprint Goal
 Build the client-side experience (Flutter UI) and integrate monetization/ad services based on the "Emerald Wash" design and finalized backend.
 
+- [x] Implement core Flutter UI (Main screen, Navigation, Theme integration)
+- [x] Implement Save Slots functionality (Frontend & Backend)
+- [x] Implement Run Reset (UI long press & Backend)
+- [x] Implement Push Notification infrastructure (Local Notifications / 24h triggers)
+- [x] Implement Settings screen (Notification ON/OFF and preferences)
+- [ ] Connect Firebase Auth (Local testing support implemented instead)
+
 ## In-scope Items
 1. **Flutter Base**: Initialize Flutter project with "Emerald Wash" theme (colors, fonts).
 2. **Main Screen**: Implement the Before/After daily progression view with crossfade.

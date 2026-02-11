@@ -16,6 +16,9 @@ if not firebase_admin._apps:
         firebase_admin.initialize_app()
 
 async def get_current_user(token: HTTPAuthorizationCredentials = Depends(security)):
+    if settings.DEBUG_SKIP_AUTH:
+        return {"uid": "local-test-user", "email": "test@example.com"}
+        
     try:
         decoded_token = auth.verify_id_token(token.credentials)
         return decoded_token
@@ -25,3 +28,4 @@ async def get_current_user(token: HTTPAuthorizationCredentials = Depends(securit
             detail=f"Invalid authentication credentials: {str(e)}",
             headers={"WWW-Authenticate": "Bearer"},
         )
+
