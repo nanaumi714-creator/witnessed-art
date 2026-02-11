@@ -1,29 +1,28 @@
-# Current Sprint
+# Current Sprint: Implementation Sprint 1
 
 ## Sprint Goal
-Establish a deterministic, spec-first execution sequence that resolves all current blockers (safety policy, monetization scope, KPI target) before implementation.
+Build the technical core (Backend API and AI Worker) based on the finalized specs, enabling a functional end-to-end "Step 0" generation and daily progression loop.
 
 ## In-scope Items
-1. Close all high/medium-risk open questions that can affect safety, policy compliance, or release decisions.
-2. Convert resolved decisions into versioned updates across `docs/` and `context/`.
-3. Define API, worker, UI, monetization, and QA tasks with owners, requirement IDs, and acceptance criteria.
-4. Produce a release-readiness checklist aligned with store-policy constraints.
+1. **Backend Base**: Set up FastAPI, Firebase Auth integration, and PostgreSQL schema.
+2. **AI Worker**: Implement SDXL img2img pipeline with 5-phase parameters.
+3. **Core APIs**: Implement `/user/init` and `/progress` (Step 0 and Step 1 logic).
+4. **Safety**: Integrate Falconsai/nsfw_image_detection with seed-retry logic.
 
 ## Out-of-scope Items
-- Production code changes.
-- Infrastructure scaling or cost tuning beyond documented policy constraints.
-- New feature proposals outside existing FR-001 to FR-008 scope.
+- Flutter UI implementation (Sprint 2 focus).
+- Monetization/Ad payment flows (Sprint 2 focus).
+- Production deployment (Sprint 3 focus).
 
 ## Ordered Delivery Sequence
-1. **Safety/Policy Decisions First**
-   - Resolve NSFW threshold policy, paid pack details, and go/no-go KPI thresholds.
-2. **Spec Synchronization**
-   - Update `docs/requirements-v2.md` and corresponding `context/rules/*` files to keep spec-first consistency.
-3. **Contract Finalization**
-   - Expand API and data contracts to endpoint/schema/error-level detail and map edge cases.
-4. **Implementation Planning by Layer**
-   - Backend/API -> Generation Worker -> Flutter UI -> Monetization integration.
-5. **Validation Planning**
-   - Lock QA matrix for FR and edge cases, plus non-functional measurements.
-6. **Release Gating**
-   - Run policy/compliance checklist and capture evidence requirements.
+1. **Infra/Auth Setup**
+   - Initialize repository with backend structure and Auth middleware.
+2. **Data Schema Implementation**
+   - Apply `users` and `saved_images` tables via Alembic.
+3. **AI Pipeline Integration**
+   - Connect to Replicate/GPU and implement phase selection logic.
+4. **Endpoint Implementation**
+   - `/user/init` -> `/progress` (Step 0 TXT2IMG).
+5. **Initial Testing**
+   - Run TEST-FR-001 and TEST-PR-003 from `test_strategy.md`.
+

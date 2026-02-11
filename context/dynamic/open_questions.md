@@ -14,9 +14,9 @@
 - related_rule_or_skill: context/rules/security_constraints.md
 - risk_level: high
 - target_resolution_date: 2026-02-14
-- status: open
+- status: closed
 - question: Confirm exact NSFW threshold policy for store compliance.
-- resolution_note: TBD
+- resolution_note: Threshold 0.7, 3 retries with seed+1. Logged in D-002.
 
 ### Q-002
 - created_at: 2026-02-10
@@ -24,9 +24,9 @@
 - related_rule_or_skill: context/rules/monetization_rules.md
 - risk_level: medium
 - target_resolution_date: 2026-02-15
-- status: open
+- status: closed
 - question: Confirm final paid pack details for launch scope.
-- resolution_note: TBD
+- resolution_note: Patron Pack ($2.99) and Creator Pack ($9.99) defined. Logged in D-003.
 
 ### Q-003
 - created_at: 2026-02-10
@@ -34,6 +34,7 @@
 - related_rule_or_skill: context/static/project_overview.md
 - risk_level: medium
 - target_resolution_date: 2026-02-16
-- status: open
+- status: closed
 - question: Confirm final KPI thresholds for go/no-go.
-- resolution_note: TBD
+- resolution_note: 30% 7-day retention, 15% 14-day completion. Logged in D-004.
+

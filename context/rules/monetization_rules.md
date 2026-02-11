@@ -5,6 +5,16 @@
 - Resolution upgrades are optional paid features.
 - Monetization must not break the core slow experience.
 
+## Pack Definitions (Launch Scope)
+
+| Item Name | Price | Type | Content |
+|---|---|---|---|
+| **Patron Pack** | $2.99 | One-time | Save slots +2 (total 3), No Ads, 5 seed presets |
+| **Creator Pack** | $9.99 | One-time | Save slots +4 (total 5), 3 UI skins, Timelapse export |
+| **High-Res Export** | $1.99 | consumable | 1024x1024 output for current image |
+| **Print Data Conversion** | $4.99 | consumable | 300dpi CMYK conversion service |
+
+
 ## Billing and Entitlement Edge Cases
 
 | Case ID | Trigger | Precondition | Expected Response | Retry Policy | Audit Requirement | Acceptance Test ID |
